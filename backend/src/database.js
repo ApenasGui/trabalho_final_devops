@@ -10,4 +10,27 @@ const pool = new Pool({
   database: process.env.DB_NAME
 })
 
+async function inicializarBanco(){
+  await pool.query(`CREATE TABLE IF NOT EXISTS livros (
+    id SERIAL PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    genero TEXT NOT NULL,
+    sinopse TEXT NOT NULL,
+    estado TEXT CHECK(estado IN ('NOVO', 'USADO_BOM', 'USADO_EXCELENTE', 'RECONDICIONADO')) NOT NULL,
+    status BOOLEAN NOT NULL,
+    preco NUMERIC(10,2) NOT NULL
+  );`)
+
+  await pool.query(`
+  INSERT INTO livros(titulo, genero, sinopse, estado, status, preco)
+  VALUES ('It, A coisa', 'Terror', 'sinopse livro', 'USADO_BOM', 'true', '50.00')`)
+
+  await pool.query(`
+    INSERT INTO livros(titulo, genero, sinopse, estado, status, preco)
+    VALUES ('Caminho dos Reis', 'Fantasia', 'sinopse livro 2', 'NOVO', 'true', '100.00')
+    `)
+}
+
+inicializarBanco();
+
 module.exports = pool;
