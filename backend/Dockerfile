@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 3001
 
 # Inicia a aplicação
-CMD ["node", "index.js"]
+CMD ["node", "src/index.js"]

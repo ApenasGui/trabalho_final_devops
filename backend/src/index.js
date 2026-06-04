@@ -8,8 +8,9 @@ app.get('/health', (req, res) => {
     return res.json('OK!');
 })
 
-app.get('/pedidos', (req, res) => {
-    return res.json('LISTA DE PEDIDOS')
+app.get('/api/livros', async (req, res) => {
+    const resultado = await pool.query('SELECT * FROM livros')
+    return res.json(resultado.rows);
 })
 
 app.listen(PORT, () => {
