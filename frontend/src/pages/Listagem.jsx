@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-
+import { Link } from "react-router";
 
 export default function Listagem() {
   const [livros, setLivros] = useState([]);
@@ -15,7 +14,9 @@ export default function Listagem() {
   return (
     <>
     <h1>Listagem de livros</h1>
-    <button>Adicionar</button>
+    <Link to="/cadastro">
+      <button>Adicionar</button>
+    </Link>
 
     <table>
       <thead>
@@ -36,7 +37,7 @@ export default function Listagem() {
             <td>{livro.sinopse}</td>
             <td>{livro.estado}</td>
             <td>{livro.status ? 'Disponível' : 'Indisponível'}</td>
-            <td>R$ {livro.preco.toFixed(2)}</td>
+            <td>R$ {Number(livro.preco).toFixed(2)}</td>
           </tr>
         ))}
       </tbody>
