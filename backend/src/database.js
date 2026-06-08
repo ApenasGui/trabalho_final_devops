@@ -12,23 +12,13 @@ const pool = new Pool({
 
 async function inicializarBanco(tentativas = 5) {
   try {
-    await pool.query(`CREATE TABLE IF NOT EXISTS livros (
-      id SERIAL PRIMARY KEY,
-      titulo TEXT NOT NULL,
-      genero TEXT NOT NULL,
-      sinopse TEXT NOT NULL,
-      estado TEXT CHECK(estado IN ('NOVO', 'USADO_BOM', 'USADO_EXCELENTE', 'RECONDICIONADO')) NOT NULL,
-      status BOOLEAN NOT NULL,
-      preco NUMERIC(10,2) NOT NULL
-    );`)
+    await pool.query(`
+    INSERT INTO livros(titulo, genero, autor, estado, status, preco)
+    VALUES ('It, A coisa', 'Terror', 'Stephen King', 'USADO_BOM', 'true', '50.00')`)
   
     await pool.query(`
-    INSERT INTO livros(titulo, genero, sinopse, estado, status, preco)
-    VALUES ('It, A coisa', 'Terror', 'sinopse livro', 'USADO_BOM', 'true', '50.00')`)
-  
-    await pool.query(`
-      INSERT INTO livros(titulo, genero, sinopse, estado, status, preco)
-      VALUES ('Caminho dos Reis', 'Fantasia', 'sinopse livro 2', 'NOVO', 'true', '100.00')
+      INSERT INTO livros(titulo, genero, autor, estado, status, preco)
+      VALUES ('Caminho dos Reis', 'Fantasia', 'Brandon Sanderson', 'NOVO', 'true', '100.00')
       `)
 
     console.log('Banco de dados inicializado com sucesso!');
