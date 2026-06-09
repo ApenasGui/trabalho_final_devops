@@ -13,13 +13,14 @@ const pool = new Pool({
 async function inicializarBanco(tentativas = 5) {
   try {
     await pool.query(`
-    INSERT INTO livros(titulo, genero, autor, estado, status, preco)
-    VALUES ('It, A coisa', 'Terror', 'Stephen King', 'USADO_BOM', 'true', '50.00')`)
+      INSERT INTO livros(titulo, genero, autor, estado, status, preco)
+      VALUES ('It, A coisa', 'Terror', 'Stephen King', 'USADO_BOM', 'true', '50.00')
+      ON CONFLICT (titulo) DO NOTHING`)
   
     await pool.query(`
       INSERT INTO livros(titulo, genero, autor, estado, status, preco)
       VALUES ('Caminho dos Reis', 'Fantasia', 'Brandon Sanderson', 'NOVO', 'true', '100.00')
-      `)
+      ON CONFLICT (titulo) DO NOTHING`)
 
     console.log('Banco de dados inicializado com sucesso!');
   } catch (error) {
