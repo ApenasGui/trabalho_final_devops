@@ -1,4 +1,4 @@
-FROM node:24
+FROM node:22-alpine
 
 # Diretório da aplicação
 WORKDIR /app
@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala dependências
-RUN npm install
+RUN npm install --production
 
 # Copia o restante do projeto
 COPY . .

@@ -28,3 +28,13 @@ services:
       DB_USER: 'user' 
       DB_PASSWORD: 'password321'
       DB_NAME: 'trabalho_devops'
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:3001
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
