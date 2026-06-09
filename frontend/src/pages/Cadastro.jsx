@@ -33,7 +33,7 @@ export default function Cadastro() {
         <form onSubmit={handleSubmit(onSubmit)}>
             <input placeholder="Título" {...register('titulo')} required />
             <input placeholder="Gênero" {...register('genero')} required />
-            <textarea placeholder="Sinopse" {...register('sinopse')} required />
+            <textarea placeholder="Autor" {...register('autor')} required />
             <select {...register('estado')} required>
                 <option value="">Selecione o estado</option>
                 <option value="NOVO">Novo</option>

@@ -23,7 +23,7 @@ export default function Listagem() {
         <tr>
           <th>Nome do livro</th>
           <th>Gênero</th>
-          <th>Sinopse</th>
+          <th>Autor</th>
           <th>Estado</th>
           <th>Status</th>
           <th>Preço</th>
@@ -34,7 +34,7 @@ export default function Listagem() {
           <tr key={livro.id}>
             <td>{livro.titulo}</td>
             <td>{livro.genero}</td>
-            <td>{livro.sinopse}</td>
+            <td>{livro.autor}</td>
             <td>{livro.estado}</td>
             <td>{livro.status ? 'Disponível' : 'Indisponível'}</td>
             <td>R$ {Number(livro.preco).toFixed(2)}</td>
