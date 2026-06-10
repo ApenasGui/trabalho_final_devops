@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS livros (
+      id SERIAL PRIMARY KEY,
+      titulo TEXT NOT NULL UNIQUE,
+      genero TEXT NOT NULL,
+      autor TEXT NOT NULL,
+      estado TEXT CHECK(estado IN ('NOVO', 'USADO_BOM', 'USADO_EXCELENTE', 'RECONDICIONADO')) NOT NULL,
+      status BOOLEAN NOT NULL,
+      preco NUMERIC(10,2) NOT NULL
+    );
