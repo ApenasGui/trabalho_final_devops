@@ -1,17 +1,23 @@
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
       - name: Instalar dependências do backend
         run: npm ci
         working-directory: backend
       - name: Rodar testes
         run: npm test
         working-directory: backend
+
   build:
     needs: test
     runs-on: ubuntu-latest
